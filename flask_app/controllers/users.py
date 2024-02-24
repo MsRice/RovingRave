@@ -62,7 +62,7 @@ def login():
     session['user_info'] = user_info
 
     if is_logged_in():
-        return redirect('/pie_wall')
+        return redirect('/song_wall')
 
 
 @app.route('/is_logged_in')
