@@ -18,6 +18,21 @@ def song_wall():
         return redirect('/')
 
 
+@app.route('/add_song', methods=['POST'])
+def add_song():
+    # validation form here
+    data = {
+        'user_id': request.form['user_id'],  # Suggester
+        'title': request.form['title'],
+        'artist': request.form['artist'],
+        'length': request.form['length']
+    }
+
+    # Song insert here
+
+    return redirect('/crowd_wall')
+
+
 @app.route('/dj_wall')
 def dj_wall():
     if is_logged_in():
