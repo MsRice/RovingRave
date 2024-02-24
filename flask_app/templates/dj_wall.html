@@ -11,7 +11,34 @@
 </head>
 
 <body>
-    <h1>DJ Wall</h1>
+    <div class="container">
+        <div class="navigation">
+            <div>
+                <h1>DJ , {{user_info['first_name']}}</h1>
+            </div>
+            <div>
+                <form action="/logout" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+        <div>
+            <div class="col-1">
+                <div class="current-song">
+                    <h1>Current Song</h1>
+                </div>
+                <div class="queue">
+                    <h1>Queue</h1>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="crowd-songs">
+                    <h1>Crowd Songs</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 
 </html>

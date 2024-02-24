@@ -1,0 +1,50 @@
+.container {
+    width: 1080px;
+    background-color: rgb(240, 143, 132);
+    border-radius: 25px;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+body {
+    background-color: rgb(187, 245, 226);
+}
+
+.container-md {
+    display: flex;
+}
+
+.col-1,
+.col-2 {
+    flex: 1;
+}
+
+.current-song,
+.add-song,
+.crowd-songs {
+    height: fit-content;
+    width: fit-content;
+    border: 5px double yellow;
+    background-color: rgb(255, 255, 194);
+    border-radius: 25px;
+    margin: 15px;
+    padding: 15px;
+    color: aqua;
+}
+
+input {
+    border-color: aqua;
+}
+
+.navigation {
+    display: inline-flex;
+    width: 1080px;
+}
+
+.head {
+    flex: 7;
+}
+
+.logout {
+    flex: 1;
+}

@@ -12,7 +12,8 @@ from flask_app.controllers.users import is_logged_in
 @app.route('/crowd_wall')
 def song_wall():
     if is_logged_in():
-        return render_template("crowd_wall.html")
+        user_info = session['user_info']
+        return render_template("crowd_wall.html", user_info=user_info)
     else:
         return redirect('/')
 
@@ -20,6 +21,7 @@ def song_wall():
 @app.route('/dj_wall')
 def dj_wall():
     if is_logged_in():
-        return render_template("dj_wall.html")
+        user_info = session['user_info']
+        return render_template("dj_wall.html", user_info=user_info)
     else:
         return redirect('/')
