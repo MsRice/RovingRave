@@ -62,7 +62,34 @@ def login():
     session['user_info'] = user_info
 
     if is_logged_in():
-        return redirect('/song_wall')
+        return redirect('/crowd_wall')
+
+
+@app.route('/dj_login', methods=["POST"])
+def dj_login():
+    data = {
+        'email': request.form['email'],
+    }
+    user_in_db = User.get_by_email(data)
+    if not user_in_db:
+        session['alert_type'] = 'login'
+        flash("Invalid Email")
+        return redirect("/")
+
+    if not bcrypt.check_password_hash(user_in_db.password, request.form['password']):
+        session['alert_type'] = 'login'
+        flash("Invalid Password")
+        return redirect('/')
+
+    user_info = {
+        'id': user_in_db.id,
+        'first_name': user_in_db.first_name
+    }
+
+    session['user_info'] = user_info
+
+    if is_logged_in():
+        return redirect('/dj_wall')
 
 
 @app.route('/is_logged_in')
