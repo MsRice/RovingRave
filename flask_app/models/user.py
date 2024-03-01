@@ -41,13 +41,13 @@ class User:
     def register(cls, data):
         query = "INSERT INTO users (first_name , last_name , email , password) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s);"
 
-        connectToMySQL('roving_rave').query_db(query, data)
+        connectToMySQL('roving_rave_schema').query_db(query, data)
 
     @classmethod
     def get_by_email(cls, data):
         query = "SELECT * FROM users WHERE email = %(email)s;"
 
-        result = connectToMySQL("roving_rave").query_db(query, data)
+        result = connectToMySQL("roving_rave_schema").query_db(query, data)
 
         # Didn't find a matching user
         if len(result) < 1:

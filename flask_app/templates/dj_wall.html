@@ -7,38 +7,80 @@
     <title>DJ Wall</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/dj_style.css">
 </head>
 
 <body>
     <div class="container">
         <div class="navigation">
-            <div>
+            <div class="head">
                 <h1>DJ , {{user_info['first_name']}}</h1>
             </div>
-            <div>
+            <div class="logout">
                 <form action="/logout" method="post">
                     <button type="submit">Logout</button>
                 </form>
             </div>
         </div>
-        <div>
+        <div class="container-md">
             <div class="col-1">
                 <div class="current-song">
                     <h1>Current Song</h1>
+                    <div class="song">
+                        <p>{{playing_song[0]['artist']}} | {{playing_song[0]['title']}} | {{playing_song[0]['length']}}
+                        </p>
+                        <p>-{{playing_song[0]['first_name']}}</p>
+                    </div>
                 </div>
+
                 <div class="queue">
                     <h1>Queue</h1>
+
+                    {% for queued in all_queue: %}
+                    <div class="song">
+                        <p>{{queued.artist}} | {{queued.title}} | {{queued.length}}</p>
+                        <p>-{{queued.first_name}}</p>
+
+
+                        <form action="/play_button" method="post">
+                            <input type="hidden" name="song_id" value="{{queued.song_id}}">
+                            <input type="hidden" name="user_id" value="{{queued.user_id}}">
+                            <input type="hidden" name="crowd_id" value="{{queued.id}}">
+                            <button type="submit">Play</button>
+                        </form>
+
+
+                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
             <div class="col-2">
                 <div class="crowd-songs">
                     <h1>Crowd Songs</h1>
-                </div>
-            </div>
+                    <div>
 
+                        {% for song in crowd_songs: %}
+
+
+                        <div class="song">
+                            <p>{{song.artist}} | {{song.title}} | {{song.length}}</p>
+                            <p>-{{song.first_name}}</p>
+
+
+                            <form action="/add_to_queue" method="post">
+                                <input type="hidden" name="song_id" value="{{song.song_id}}">
+                                <input type="hidden" name="user_id" value="{{song.user_id}}">
+                                <input type="hidden" name="crowd_id" value="{{song.id}}">
+                                <button type="submit">ADD</button>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
 </body>
 
 </html>

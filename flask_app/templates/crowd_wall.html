@@ -67,7 +67,7 @@
             <div class="col-2">
                 <div class="crowd-songs">
 
-                    {% for song in all_songs: %}
+                    {% for song in crowd_songs: %}
 
 
                     <div class="song">
@@ -76,7 +76,8 @@
 
                         {% if song.user_id == user_info['id'] %}
                         <form action="/delete_song" method="post">
-                            <input type="hidden" name="song_id" value="{{song.id}}">
+                            <input type="hidden" name="song_id" value="{{song.song_id}}">
+                            <input type="hidden" name="crowd_id" value="{{song.id}}">
                             <button type="submit" class="btn btn-link"> Delete</button>
 
                         </form>

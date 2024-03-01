@@ -13,8 +13,9 @@ from flask_app.controllers.users import is_logged_in
 def song_wall():
     if is_logged_in():
         user_info = session['user_info']
-        all_songs = Song.get_all_songs()
-        return render_template("crowd_wall.html", user_info=user_info, all_songs=all_songs)
+        crowd_songs = Song.get_all_crowd_songs()
+
+        return render_template("crowd_wall.html", user_info=user_info, crowd_songs=crowd_songs)
     else:
         return redirect('/')
 
@@ -41,7 +42,12 @@ def add_song():
 def dj_wall():
     if is_logged_in():
         user_info = session['user_info']
-        return render_template("dj_wall.html", user_info=user_info)
+        crowd_songs = Song.get_all_crowd_songs()
+        all_queue = Song.get_queue()
+        playing_song = Song.get_current()
+
+        print(playing_song)
+        return render_template("dj_wall.html", user_info=user_info, crowd_songs=crowd_songs, all_queue=all_queue, playing_song=playing_song)
     else:
         return redirect('/')
 
@@ -49,7 +55,37 @@ def dj_wall():
 @app.route('/delete_song', methods=['POST'])
 def delete_song():
     data = {
-        'id': request.form['song_id']
+        'id': request.form['song_id'],
+        'crowd_id': request.form['crowd_id']
     }
+    Song.delete_song_from_crowd(data)
     Song.delete_song(data)
     return redirect('/crowd_wall')
+
+
+@app.route('/add_to_queue', methods=['POST'])
+def add_to_queue():
+    data = {
+        'id': request.form['song_id'],
+        'crowd_id': request.form['crowd_id'],
+        'user_id': request.form['user_id']
+    }
+
+    Song.add_to_queue(data)
+    Song.delete_song_from_crowd(data)
+
+    return redirect('/dj_wall')
+
+
+@app.route('/play_button', methods=['POST'])
+def play_button():
+    data = {
+        'id': request.form['crowd_id'],
+        'song_id': request.form['song_id'],
+        'user_id': request.form['user_id']
+    }
+
+    Song.delete_song_from_queue(data)
+    Song.add_to_current(data)
+
+    return redirect("/dj_wall")
