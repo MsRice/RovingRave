@@ -4,14 +4,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Crowd Wall</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/crowd_style.css">
 </head>
+<script src="https://cdn.jsdelivr.net/npm/html-duration-picker@latest/dist/html-duration-picker.min.js"></script>
+</body>
 
 <body>
+    <div class="container">
+        <div class="navigation">
+            <div class="head">
+                <h1>Welcome to the PARTY , {{user_info['first_name']}}</h1>
+            </div>
+            <div class="logout">
+                <form action="/logout" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+        <div class="container-md">
+            <div class="col-1">
+                <div class="current-song">
+                    <h4>Current Song</h4>
+                    <div class="song">
+                        <p>artist | title | length</p>
+                        <p>suggester</p>
+                    </div>
+                </div>
+                <div class="add-song">
+                    <div style="color: red;">
+                        {% with messages = get_flashed_messages() %} <!-- declare a variable called messages -->
+                        {% if messages %} <!-- check if there are any messages -->
+                        {% for message in messages %} <!-- loop through the messages -->
+                        <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <form action="/add_song" method="post">
+                        <input type="hidden" name="user_id" value="{{user_info['id']}}">
+                        <div class="mb-3">
+                            <label for="title">Title:</label>
+                            <input type="text" name="title" value="title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="artist">Artist:</label>
+                            <input type="text" name="artist" value="artist">
+                        </div>
+                        <div class="mb-3">
+                            <label for="length">Length:</label>
+                            <input class="html-duration-picker" data-hide-seconds name="length">
+                        </div>
 
-    <h1>test</h1>
+                        <button type="submit">Request Song</button>
 
-    <h1>test small change</h1>
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="crowd-songs">
+
+                    {% for song in crowd_songs: %}
+
+
+                    <div class="song">
+                        <p>{{song.artist}} | {{song.title}} | {{song.length}}</p>
+                        <p>-{{song.first_name}}</p>
+
+                        {% if song.user_id == user_info['id'] %}
+                        <form action="/delete_song" method="post">
+                            <input type="hidden" name="song_id" value="{{song.song_id}}">
+                            <input type="hidden" name="crowd_id" value="{{song.id}}">
+                            <button type="submit" class="btn btn-link"> Delete</button>
+
+                        </form>
+
+                        {% endif %}
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 
 </body>
 
