@@ -1,21 +1,46 @@
-.container {
-    width: 1080px;
-    background-color: rgb(240, 143, 132);
-    border-radius: 25px;
-    padding-top: 15px;
-    margin-top: 15px;
+html {
+    background: #123;
+
+    background-image: url('../img/giphy.gif');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-blend-mode: soft-light;
+    overflow: hidden;
 }
 
 body {
-    background-color: rgb(187, 245, 226);
+    display: block;
+    font-size: 52px;
+
 }
+
+
+
+div {
+    font-size: 20px;
+    background-color: transparent;
+
+}
+
+.container {
+
+
+    color: aqua;
+    margin: 15px;
+    padding: 15px;
+    content: none;
+
+}
+
 
 .container-md {
-    display: flex;
+    display: inline-flex;
+
 }
 
-.col-1,
-.col-2 {
+.col-a,
+.col-b {
+    color: #000;
     flex: 1;
 }
 
@@ -23,34 +48,39 @@ body {
 .add-song,
 .crowd-songs {
     height: fit-content;
-    width: fit-content;
-    border: 5px double yellow;
-    background-color: rgb(255, 255, 194);
+
+    flex: 1;
     border-radius: 25px;
     margin: 15px;
     padding: 15px;
     color: aqua;
 }
 
-input {
-    border-color: aqua;
-}
 
-.navigation {
+
+.nav {
     display: inline-flex;
-    width: 1080px;
+
+    border: 3px aqua solid;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 25px;
 }
 
 .head {
     flex: 7;
+    padding-left: 15px;
+
 }
 
 .logout {
+
     flex: 1;
 }
 
 .song {
     border: 2px solid aqua;
+
     margin: 15px;
     padding: 15px;
     border-radius: 25px;

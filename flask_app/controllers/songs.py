@@ -14,8 +14,8 @@ def song_wall():
     if is_logged_in():
         user_info = session['user_info']
         crowd_songs = Song.get_all_crowd_songs()
-
-        return render_template("crowd_wall.html", user_info=user_info, crowd_songs=crowd_songs)
+        playing_song = Song.get_current()
+        return render_template("crowd_wall.html", user_info=user_info, crowd_songs=crowd_songs, playing_song=playing_song)
     else:
         return redirect('/')
 
