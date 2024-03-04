@@ -16,6 +16,18 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
+    @classmethod
+    def get_by_email(cls, data):
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+
+        result = connectToMySQL("roving_rave_schema").query_db(query, data)
+
+        # Didn't find a matching user
+        if len(result) < 1:
+            return False
+        return cls(result[0])
+
+
     @staticmethod
     def registration_validation(reg_form):
         is_Valid = True
@@ -31,6 +43,16 @@ class User:
             flash("Invalid email address!")
             is_Valid = False
 
+        data = {
+            "email": reg_form['email']
+        }
+
+        email_check = User.get_by_email(data)
+
+        if email_check != False:
+            flash('Email is already registered!')
+            is_Valid = False
+
         if reg_form['password'] != reg_form['conf_password']:
             flash("Check password match!")
             is_Valid = False
@@ -43,13 +65,3 @@ class User:
 
         connectToMySQL('roving_rave_schema').query_db(query, data)
 
-    @classmethod
-    def get_by_email(cls, data):
-        query = "SELECT * FROM users WHERE email = %(email)s;"
-
-        result = connectToMySQL("roving_rave_schema").query_db(query, data)
-
-        # Didn't find a matching user
-        if len(result) < 1:
-            return False
-        return cls(result[0])
