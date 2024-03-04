@@ -1,21 +1,29 @@
 .container {
     width: 1080px;
-    background-color: rgb(240, 143, 132);
+    background-color: rgb(255, 0, 119);
     border-radius: 25px;
     padding-top: 15px;
     margin-top: 15px;
+
 }
 
-body {
-    background-color: rgb(187, 245, 226);
+html {
+    background: #123;
+
+    background-image: url('../img/giphy\ \(1\).gif');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-blend-mode: soft-light;
+    overflow: hidden;
 }
 
 .container-md {
     display: flex;
+
 }
 
-.col-1,
-.col-2 {
+.col-a,
+.col-b {
     flex: 1;
 }
 
@@ -30,15 +38,21 @@ body {
     margin: 15px;
     padding: 15px;
     color: aqua;
+    opacity: .9;
+
 }
 
 input {
     border-color: aqua;
 }
 
-.navigation {
+.na {
     display: inline-flex;
-    width: 1080px;
+
+    border: 3px aqua solid;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 25px;
 }
 
 .head {
