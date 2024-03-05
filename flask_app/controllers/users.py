@@ -20,6 +20,7 @@ def index():
 def register():
     if not User.registration_validation(request.form):
         session['alert_type'] = 'registration'
+
         return redirect('/')
 
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
