@@ -58,10 +58,7 @@
                         <label for="artist">Artist:</label>
                         <input type="text" name="artist" value="artist">
                     </div>
-                    <div class="mb-3">
-                        <label for="length">Length:</label>
-                        <input class="html-duration-picker" data-hide-seconds name="length">
-                    </div>
+
 
                     <button type="submit">Request Song</button>
 
@@ -72,26 +69,29 @@
         <div class="col-d">
             <div class="crowd-songs">
                 <h1>Crowd Songs</h1>
+                <div class="scroll">
+                    {% for song in crowd_songs: %}
 
-                {% for song in crowd_songs: %}
 
+                    <div class="song">
+                        <img class="song_img" src="{{song.cover_link}}" alt="{{song.title}} cover art">
+                        <p>{{song.artist}} | {{song.title}} | {{song.length}}</p>
+                        <p>-{{song.first_name}}</p>
 
-                <div class="song">
-                    <p>{{song.artist}} | {{song.title}} | {{song.length}}</p>
-                    <p>-{{song.first_name}}</p>
+                        {% if song.user_id == user_info['id'] %}
+                        <form action="/delete_song" method="post">
+                            <input type="hidden" name="song_id" value="{{song.song_id}}">
+                            <input type="hidden" name="crowd_id" value="{{song.id}}">
+                            <button type="submit" class="btn btn-link"> Delete</button>
 
-                    {% if song.user_id == user_info['id'] %}
-                    <form action="/delete_song" method="post">
-                        <input type="hidden" name="song_id" value="{{song.song_id}}">
-                        <input type="hidden" name="crowd_id" value="{{song.id}}">
-                        <button type="submit" class="btn btn-link"> Delete</button>
+                        </form>
 
-                    </form>
+                        {% endif %}
 
-                    {% endif %}
+                    </div>
+                    {% endfor %}
 
                 </div>
-                {% endfor %}
             </div>
 
         </div>

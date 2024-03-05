@@ -28,7 +28,10 @@
                 <div class="current-song">
                     <h1>Current Song</h1>
                     <div class="song">
-                        <p>{{playing_song[0]['artist']}} | {{playing_song[0]['title']}} | {{playing_song[0]['length']}}
+                        <img class="song_img" src="{{playing_song[0].cover_link}}"
+                            alt="{{playing_song[0].title}} cover art">
+                        <p><a href="{{playing_song[0].track_link}}">{{playing_song[0]['artist']}}</a> |
+                            {{playing_song[0]['title']}} | {{playing_song[0]['length']}}
                         </p>
                         <p>-{{playing_song[0]['first_name']}}</p>
                     </div>
@@ -39,6 +42,7 @@
 
                     {% for queued in all_queue: %}
                     <div class="song">
+                        <img class="song_img" src="{{queued.cover_link}}" alt="{{queued.title}} cover art">
                         <p>{{queued.artist}} | {{queued.title}} | {{queued.length}}</p>
                         <p>-{{queued.first_name}}</p>
 
@@ -59,12 +63,13 @@
             <div class="col-b">
                 <div class="crowd-songs">
                     <h1>Crowd Songs</h1>
-                    <div>
+                    <div class="scroll">
 
                         {% for song in crowd_songs: %}
 
 
                         <div class="song">
+                            <img class="song_img" src="{{song.cover_link}}" alt="{{song.title}} cover art">
                             <p>{{song.artist}} | {{song.title}} | {{song.length}}</p>
                             <p>-{{song.first_name}}</p>
 

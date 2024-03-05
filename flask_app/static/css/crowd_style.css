@@ -56,7 +56,16 @@ div {
     color: aqua;
 }
 
+.scroll {
+    height: 750px;
 
+    overflow-y: scroll;
+}
+
+.song_img {
+    height: 70px;
+    width: 70px;
+}
 
 .nav {
     display: inline-flex;
