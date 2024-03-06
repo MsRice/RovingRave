@@ -27,12 +27,13 @@
             <div class="col-a">
                 <div class="current-song">
                     <h1>Current Song</h1>
-                    <div class="song">
-                        <img class="song_img" src="{{playing_song[0].cover_link}}"
-                            alt="{{playing_song[0].title}} cover art">
-                        <p><a href="{{playing_song[0].track_link}}">{{playing_song[0]['artist']}}</a> |
-                            {{playing_song[0]['title']}} | {{playing_song[0]['length']}}
-                        </p>
+                   <div class="song">
+
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/track/{{x}}?utm_source=generator" width="100%"
+                            height="352" frameBorder="0" allowfullscreen=""
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy"></iframe>
                         <p>-{{playing_song[0]['first_name']}}</p>
                     </div>
                 </div>
