@@ -27,7 +27,7 @@
             <div class="col-a">
                 <div class="current-song">
                     <h1>Current Song</h1>
-                   <div class="song">
+                    <div class="song">
 
                         <iframe style="border-radius:12px"
                             src="https://open.spotify.com/embed/track/{{x}}?utm_source=generator" width="100%"
@@ -35,8 +35,10 @@
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                             loading="lazy"></iframe>
                         <p>-{{playing_song[0]['first_name']}}</p>
+                        <a href="https://open.spotify.com/embed/track/{{x}}?utm_source=generator">Song {{x}}</a>
                     </div>
                 </div>
+
 
                 <div class="queue">
                     <h1>Queue</h1>

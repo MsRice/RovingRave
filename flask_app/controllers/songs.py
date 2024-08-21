@@ -54,9 +54,13 @@ def dj_wall():
         crowd_songs = Song.get_all_crowd_songs()
         all_queue = Song.get_queue()
         playing_song = Song.get_current()
+        x_list = playing_song[0]['track_link'].split('/')
 
-        print("playing_song -->>", playing_song[0]['track_link'])
-        return render_template("dj_wall.html", user_info=user_info, crowd_songs=crowd_songs, all_queue=all_queue, playing_song=playing_song)
+        print("playing_song -->>", playing_song[0]['track_link'].split('/'))
+        print("playing_song_x -->>", x_list[-1])
+
+        x = x_list[-1]
+        return render_template("dj_wall.html", user_info=user_info, crowd_songs=crowd_songs, all_queue=all_queue, playing_song=playing_song, x=x)
     else:
         return redirect('/')
 
