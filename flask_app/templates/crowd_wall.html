@@ -7,98 +7,134 @@
     <title>Crowd Wall</title>
 
     <link rel="stylesheet" href="../static/css/crowd_style.css">
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
 
 
 </head>
-<script src="https://cdn.jsdelivr.net/npm/html-duration-picker@latest/dist/html-duration-picker.min.js"></script>
+
 </body>
 
 
-<div class="container">
-    <div class="nav">
-        <div class="head">
+<section class="nav__wrapper">
+    <nav>
+        <div class="nav__name">
 
-            <h1>Welcome to the PARTY , {{user_info['first_name']}}</h1>
+            <h1>Welcome to the PARTY , <span class="blue-words"> {{user_info['first_name']}}</span></h1>
         </div>
-        <div class="logout">
-            <form action="/logout" method="post">
-                <button type="submit">Logout</button>
-            </form>
-        </div>
-    </div>
-    <div class="container-md">
-        <div class="col-a">
-            <div class="current-song">
-                <h1>Current Song</h1>
-                <div class="song">
-                    <p>{{playing_song[0]['artist']}} | {{playing_song[0]['title']}} | {{playing_song[0]['length']}}
-                    </p>
-                    <p>-{{playing_song[0]['first_name']}}</p>
-                </div>
+
+
+        <form action="/logout" method="post">
+            <button type="submit" class="button">Logout</button>
+        </form>
+
+    </nav>
+</section>
+
+<section class="container-md">
+    <div class="section__songs">
+        <div class="current__song--wrapper">
+            <h1>Current Song</h1>
+            <div class="current__song">
+                <figure><img class="current__song--img" src="{{playing_song[0]['cover_link']}}"
+                        alt="{{playing_song[0]['title']}} cover art"></figure>
+
+                <h4>
+                    {{playing_song[0]['artist']}}
+                </h4>
+                <h3>
+                    {{playing_song[0]['title']}}
+                </h3>
+                <h3>
+                    {{playing_song[0]['length']}}
+                </h3>
+                <h6> Suggested by :
+                    {{playing_song[0]['first_name']}}
+
+                </h6>
+
             </div>
-            <div class="add-song">
-                <h1>Add a Song</h1>
-                <div style="color: red;">
-                    {% with messages = get_flashed_messages() %} <!-- declare a variable called messages -->
-                    {% if messages %} <!-- check if there are any messages -->
-                    {% for message in messages %} <!-- loop through the messages -->
-                    <p>{{message}}</p> <!-- display each message in a paragraph tag -->
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-                </div>
-                <form action="/add_song" method="post">
+        </div>
+        <div class="add__song--wrapper">
+            <h1 class="add__song--title">Add a Song</h1>
+            <div style="color: red;">
+                {% with messages = get_flashed_messages() %} <!-- declare a variable called messages -->
+                {% if messages %} <!-- check if there are any messages -->
+                {% for message in messages %} <!-- loop through the messages -->
+                <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div>
+
+                <form action="/add_song" class="add__song" method="post">
                     <input type="hidden" name="user_id" value="{{user_info['id']}}">
-                    <div class="mb-3">
+                    <div class="">
                         <label for="title">Title:</label>
                         <input type="text" name="title" value="title">
                     </div>
-                    <div class="mb-3">
+                    <div class="">
                         <label for="artist">Artist:</label>
                         <input type="text" name="artist" value="artist">
                     </div>
 
 
-                    <button type="submit">Request Song</button>
+                    <button type="submit" class="button">Request Song</button>
 
                 </form>
-
-            </div>
-        </div>
-        <div class="col-d">
-            <div class="crowd-songs">
-                <h1>Crowd Songs</h1>
-                <div class="scroll">
-                    {% for song in crowd_songs: %}
-
-
-                    <div class="song">
-                        <img class="song_img" src="{{song.cover_link}}" alt="{{song.title}} cover art">
-                        <p>{{song.artist}} | {{song.title}} | {{song.length}}</p>
-                        <p>-{{song.first_name}}</p>
-
-                        {% if song.user_id == user_info['id'] %}
-                        <form action="/delete_song" method="post">
-                            <input type="hidden" name="song_id" value="{{song.song_id}}">
-                            <input type="hidden" name="crowd_id" value="{{song.id}}">
-                            <button type="submit" class="btn btn-link"> Delete</button>
-
-                        </form>
-
-                        {% endif %}
-
-                    </div>
-                    {% endfor %}
-
-                </div>
             </div>
 
         </div>
 
     </div>
-</div>
+    <div class="section__queue">
 
+
+        <div class="crowd__songs">
+            <div class="crowd__songs--title">
+                <h1>Crowd Songs</h1>
+            </div>
+            <div class="crowd__songs--scroll">
+                {% for song in crowd_songs: %}
+                <section class="crowd__songs--song">
+                    <figure class="crowd__songs--img-wrapper">
+                        <img class="crowd__songs--img" src="{{song.cover_link}}" alt="{{song.title}} cover art">
+                    </figure>
+                    <div class="crowd__songs--descrpition">
+                        <h4>{{song.title}} </h4>
+                        <h5>{{song.artist}}</h5>
+                        <h6>{{song.length}}</h6>
+                        <h6>Suggested by : {{song.first_name}}</h6>
+                    </div>
+                    <div>
+
+                        {% if song.user_id == user_info['id'] %}
+                        <form action="/delete_song" method="post">
+                            <input type="hidden" name="song_id" value="{{song.song_id}}">
+                            <input type="hidden" name="crowd_id" value="{{song.id}}">
+                            <button type="submit" class="button--red"> Delete</button>
+
+                        </form>
+
+                        {% endif %}
+                    </div>
+                </section>
+
+
+
+
+
+
+
+                {% endfor %}
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+</section>
 
 </body>
 

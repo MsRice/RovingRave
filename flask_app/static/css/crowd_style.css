@@ -1,18 +1,208 @@
-html {
-    background: #123;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 
-    background-image: url('../img/giphy.gif');
+}
+
+/*  Navigation Bar */
+.nav__wrapper {
+    background-color: rgb(151, 200, 248);
+}
+
+nav {
+
+    height: 100px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav__name {
+    font-weight: 700;
+}
+
+.blue-words {
+    color: blue;
+
+}
+
+.button {
+
+    background-color: rgb(49, 122, 196);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(139, 182, 224);
+    opacity: .85;
+
+}
+
+.container-md {
+    background-color: rgba(231, 231, 231, 0.801);
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    height: calc(100vh - 70px);
+}
+
+/* Song Section : Current Song & Add Song */
+
+.section__songs {
+
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+
+}
+
+.current__song--wrapper {
+    width: 100%;
+    background-color: rgba(142, 190, 238, 0.767);
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.current__song {
+    justify-content: center;
+}
+
+.current__song--img {
+    border: 5px solid black;
+    border-radius: 5px;
+    max-width: 400px;
+}
+
+.add__song--wrapper {
+    width: 100%;
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 36px;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+
+}
+
+input {
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+.add__song--title {
+    display: flex;
+    justify-content: center;
+}
+
+.add__song {
+    font-size: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Section Queue */
+
+.section__queue {
+    width: 100%;
+    background-color: rgba(142, 190, 238, 0.767);
+    padding: 24px;
+    border-top: 3px double gray;
+
+}
+
+.crowd__songs--title {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+
+}
+
+.crowd__songs--scroll {
+    border: 3px solid gray;
+    border-radius: 5px;
+    background-color: azure;
+}
+
+.crowd__songs--song {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 15px;
+}
+
+.crowd__songs--img {
+    max-width: 100px;
+}
+
+.crowd__songs--img--wrapper {
+    flex: 2;
+    border: 5px solid gray;
+    padding: 5px;
+}
+
+.crowd__songs--descrpition {
+    flex-direction: 6;
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.button--red {
+
+    background-color: rgb(196, 49, 49);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.button--red:hover {
+    background-color: rgb(236, 170, 140);
+    opacity: .85;
+
+}
+
+section.crowd__songs--song:nth-child(even) {
+    background-color: rgba(217, 218, 224, 0.836);
+}
+
+
+/* html {
+
+    background-image: url('../img/giphy.gif'); 
     background-repeat: no-repeat;
     background-size: 100%;
     background-blend-mode: soft-light;
     overflow: hidden;
 }
 
-body {
-    display: block;
-    font-size: 52px;
-
-}
 
 
 
@@ -32,11 +222,6 @@ div {
 
 }
 
-
-.container-md {
-    display: inline-flex;
-
-}
 
 .col-a,
 .col-b {
@@ -67,25 +252,10 @@ div {
     width: 70px;
 }
 
-.nav {
-    display: inline-flex;
 
-    border: 3px aqua solid;
-    margin: 15px;
-    padding: 15px;
-    border-radius: 25px;
-}
 
-.head {
-    flex: 7;
-    padding-left: 15px;
 
-}
 
-.logout {
-
-    flex: 1;
-}
 
 .song {
     border: 2px solid aqua;
@@ -94,3 +264,5 @@ div {
     padding: 15px;
     border-radius: 25px;
 }
+
+*/
