@@ -1,0 +1,17 @@
+List of Features needed or needs to be remove befor dragoncon2025!!
+--Roadmap for taking Roving Rave live from "class project"
+
+- Remove crowd login
+- Add Firebase DB
+- Login with google api
+- UPDATE: CSS Styling
+
+- 3 main layout/intefaces
+    - DJ View
+    - Crowd add song
+        - linkto: GoR.com {tech costume services}
+        - Donte to DJ : Paypal links
+        - linkto: youtube insta 360 footage
+    - Bag View  
+        - Current song
+        - Queued 
